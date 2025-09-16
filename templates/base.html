@@ -1,0 +1,184 @@
+<!DOCTYPE html>  
+<html lang="en">  
+
+<head>  
+  <meta charset="utf-8">  
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">  
+
+  <title>{% block title %}  
+  {% endblock title %}</title>  
+  <meta content="" name="description">  
+  <meta content="" name="keywords">  
+
+  {% block style %}  
+  {% endblock style %}  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"  
+    rel="stylesheet">  
+
+  <!-- Vendor CSS Files -->  
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
+  <link href="static/assets/vendor/venobox/venobox.css" rel="stylesheet">  
+  <link href="static/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">  
+  <link href="static/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">  
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM3D5G0Gd8Wg7/rGDMG8/PL4U5N8E7M9N8HkF1" crossorigin="anonymous">   
+
+  <!-- Template Main CSS File -->  
+  <link href="static/assets/css/style.css" rel="stylesheet">  
+
+</head>  
+
+<body>  
+
+  <!-- ======= Header ======= -->  
+  <header id="header">  
+    <div class="container">  
+
+      <div id="logo" class="pull-left">  
+        <a href="/" class="scrollto">M.R.P</a>  
+      </div>  
+
+      <nav id="nav-menu-container">  
+        <ul class="nav-menu">  
+          <li class="{% block home %} {% endblock home %}"><a href="/"><i class="fas fa-home"></i>Home</a></li>  
+          <li><a href="/forum">Community Forum</a></li>  
+          <li><a href="/bom">BOM</a></li>  
+          <li><a href="/addagroproducts">Add Products</a></li>  
+          <li><a href="/agroproducts">Agro Products</a></li>  
+            
+          <!-- Search Form -->  
+          <li>  
+            <form action="/search" method="GET" class="form-inline" id="searchForm">  
+              <input type="text" name="query" id="searchInput" class="form-control" placeholder="Search Products" required>
+              <button type="button" id="voiceSearchButton" class="btn btn-primary">Voice Search</button>  
+            </form>  
+          </li>  
+
+          {% if current_user.is_authenticated %}  
+          <li class="buy-tickets"><a href="/profile" data-toggle="modal" data-target="#profileModal" id="profileLink">Welcome {{current_user.username}}</a></li>  
+          <li class="buy-tickets"><a href="/logout">Logout</a></li>  
+          {% else %}  
+          <li class="buy-tickets"><a href="/signup">Signin</a></li>  
+          {% endif %}  
+        </ul>  
+      </nav><!-- #nav-menu-container -->  
+    </div>  
+  </header><!-- End Header -->  
+
+  <!-- ======= Intro Section ======= -->  
+  <section id="intro">  
+    <div class="intro-container" data-aos="zoom-in" data-aos-delay="100">  
+      <h1 class="mb-4 pb-0">MATERIAL REQUIREMENT PLANNING</h1>  
+      <p class="mb-4 pb-0">AGROBUSINESS</p>  
+      <a href="/agroproducts" class="about-btn scrollto">AGRO PRODUCTS</a>  
+    </div>  
+  </section><!-- End Intro Section -->  
+  <main id="main">  
+
+    {% block body %}  
+    {% with messages=get_flashed_messages(with_categories=true) %}  
+    {% if messages %}  
+    {% for category, message in messages %}  
+    <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">  
+      {{message}}  
+    </div>  
+    {% endfor %}  
+    {% endif %}  
+    {% endwith %}  
+    {% endblock body %}  
+
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>  
+
+    <!-- Vendor JS Files -->  
+    <script src="static/assets/vendor/jquery/jquery.min.js"></script>  
+    <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>  
+    <script src="static/assets/vendor/jquery.easing/jquery.easing.min.js"></script>  
+    <script src="static/assets/vendor/php-email-form/validate.js"></script>  
+    <script src="static/assets/vendor/venobox/venobox.min.js"></script>  
+    <script src="static/assets/vendor/owl.carousel/owl.carousel.min.js"></script>  
+    <script src="static/assets/vendor/superfish/superfish.min.js"></script>  
+    <script src="static/assets/vendor/hoverIntent/hoverIntent.js"></script>  
+    <script src="static/assets/vendor/aos/aos.js"></script>  
+
+    <!-- Template Main JS File -->  
+    <script src="static/assets/js/main.js"></script>  
+
+    <!-- Profile Modal -->  
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel"  
+      aria-hidden="true">  
+      <div class="modal-dialog" role="document">  
+        <div class="modal-content">  
+          <div class="modal-header">  
+            <h5 class="modal-title" id="profileModalLabel">Profile</h5>  
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">  
+              <span aria-hidden="true">&times;</span>  
+            </button>  
+          </div>  
+          <div class="modal-body">  
+            <div id="profileContent">  
+              <!-- Profile content will be loaded here -->  
+            </div>  
+          </div>  
+          <div class="modal-footer">  
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+
+    <script>
+    const searchInput = document.getElementById('searchInput');  
+  const voiceSearchButton = document.getElementById('voiceSearchButton');  
+  const searchForm = document.getElementById('searchForm');  
+
+  if ('webkitSpeechRecognition' in window) {  
+    const recognition = new webkitSpeechRecognition();  
+    recognition.continuous = false;  
+    recognition.interimResults = false;  
+    recognition.lang = 'en-US'; // Or another language  
+
+    voiceSearchButton.addEventListener('click', () => {  
+      recognition.start();  
+      voiceSearchButton.textContent = 'Listening...';  
+    });  
+
+    recognition.onresult = (event) => {  
+      const transcript = event.results[0][0].transcript;  
+      searchInput.value = transcript;  
+      searchForm.submit(); // Automatically submit the form  
+      voiceSearchButton.textContent = 'Voice Search';  
+    };  
+
+    recognition.onerror = (event) => {  
+      console.error('Speech recognition error:', event.error);  
+      voiceSearchButton.textContent = 'Voice Search';  
+    };  
+
+    recognition.onend = () => {  
+      voiceSearchButton.textContent = 'Voice Search';  
+    };  
+
+  } else {  
+    voiceSearchButton.disabled = true;  
+    voiceSearchButton.textContent = 'Voice Search not supported';  
+    alert("Voice search is not supported in this browser.  Please try Chrome or another browser with Web Speech API support.");  
+  }    
+      $(document).ready(function() {  
+        $('#profileLink').on('click', function() {  
+          $.ajax({  
+            url: '/profile', // URL to fetch the profile content  
+            type: 'GET',  
+            success: function(data) {  
+              $('#profileContent').html(data); // Load the response into the modal  
+            },  
+            error: function() {  
+              $('#profileContent').html('<p>Error loading profile.</p>'); // Handle errors  
+            }  
+          });  
+        });  
+      });  
+    </script>  
+    
+</body>  
+
+</html>

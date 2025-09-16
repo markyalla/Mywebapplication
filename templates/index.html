@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block title %}
+Student
+{% endblock title %}
+{% block home %}
+menu-active
+{% endblock home %}
+
+{% block body %}
+  
+
+
+  <!-- ======= About Us Section ======= -->  
+<section id="about">  
+  <div class="container">  
+
+    <div class="section-header">  
+      <h3>About Us</h3>  
+      <p>Learn more about our mission and values.</p>  
+    </div>  
+
+    <div class="section-header">  
+      <div  class="col-lg-6">
+        <h4>Our Mission</h4>  
+        <p>To empower farmers through technology and knowledge.</p>  
+      </div> 
+      <div  class="col-lg-6">  
+        <h4>Our Vision</h4>  
+        <p>To be the leading platform for agro business solutions.</p>  
+      </div>  
+    </div>  
+
+  </div>  
+</section><!-- End About Us Section -->
+<!-- ======= Contact Section ======= -->  
+<section id="contact" class="section-bg">  
+  <div class="container">  
+
+    <div class="section-header">  
+      <h3>Contact Us</h3>  
+      <h5>Feel free to reach out to us for any inquiries.</h5>  
+    </div>  
+
+    <div class="row">  
+      <div class="col-lg-6">  
+        <form action="/contact" method="POST" role="form" class="php-email-form">  
+          <div class="form-group">  
+            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>  
+          </div>  
+          <div class="form-group">  
+            <input type="email" name="email" class="form-control" id="email" placeholder="Your Email" required>  
+          </div>  
+          <div class="form-group">  
+            <textarea name="message" class="form-control" rows="5" placeholder="Message" required></textarea>  
+          </div> 
+          <br> 
+          <div class="text-center"><button type="submit">Send Message</button></div>  
+        </form>  
+      </div>  
+      <div class="col-lg-6">  
+        <div class="contact-info">  
+          <h4>Contact Information</h4>  
+          <p><strong>Email:</strong> contact@mrp.com</p>  
+          <p><strong>Phone:</strong> +1 234 567 890</p>  
+          <p><strong>Address:</strong> 123 Agro Lane, City, Country</p>  
+        </div>  
+      </div>  
+    </div>  
+  </div>  
+</section><!-- End Contact Section -->
+
+<!-- ======= Testimonials Section ======= -->  
+<section id="testimonials">  
+  <div class="container">  
+    <div class="section-header">  
+      <h3>Testimonials</h3>  
+      <p>What our customers say about us.</p>  
+    </div>  
+
+    <div class="row">  
+      <div class="col-lg-4">  
+        <div class="testimonial-item">  
+          <p>  
+            <i class="fa fa-quote-left"></i>  
+            This platform has transformed my agro business!  
+            <i class="fa fa-quote-right"></i>  
+          </p>  
+          <h3>John Doe</h3>  
+          <h4>Farmer</h4>  
+        </div>  
+      </div>  
+
+      <div class="col-lg-4">  
+        <div class="testimonial-item">  
+          <p>  
+            <i class="fa fa-quote-left"></i>  
+            Excellent service and support for farmers!  
+            <i class="fa fa-quote-right"></i>  
+          </p>  
+          <h3>Jane Smith</h3>  
+          <h4>Agro Entrepreneur</h4>  
+        </div>  
+      </div>  
+
+      <div class="col-lg-4">  
+        <div class="testimonial-item">  
+          <p>  
+            <i class="fa fa-quote-left"></i>  
+            A wonderful experience with great results!  
+            <i class="fa fa-quote-right"></i>  
+          </p>  
+          <h3>Michael Brown</h3>  
+          <h4>Farming Consultant</h4>  
+        </div>  
+      </div>  
+    </div>  
+  </div>  
+</section><!-- End Testimonials Section -->
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+     
+    </div>
+
+    <div class="container">
+   
+      <div class="credits">
+      <br>
+        Developed by <a href="designet.netlify.app" target="_blank">Designet </a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+{% endblock body %}

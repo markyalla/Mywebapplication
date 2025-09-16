@@ -1,0 +1,72 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+    <style>  
+        .profile-picture {  
+            width: 150px;  
+            height: 150px;  
+            border-radius: 50%; /* Circular shape */  
+            object-fit: cover; /* Ensure image fits nicely */  
+        }  
+    </style>  
+    <title>User Profile</title>  
+</head>  
+<body>  
+    <div class="container mt-5">  
+        <h1>Your Profile</h1>  
+        <div class="text-center">  
+            <img src="{{ url_for('uploaded_file', filename=user.profile_picture) }}"   
+                 alt="Profile Picture"   
+                 class="profile-picture">  
+            <br>  
+            <h2>{{ user.username }}</h2>  
+            <p>Email: {{ user.email }}</p>  
+            <p>Phone: {{ user.phone }}</p>  
+            <p>Location: {{ user.location }}</p>  
+            <button class="btn btn-primary" data-toggle="modal" data-target="#updateProfileModal">Update Profile</button>  
+        </div>  
+    </div>  
+
+    <!-- Update Profile Picture Modal -->  
+    <div class="modal fade" id="updateProfileModal" tabindex="-1" role="dialog" aria-labelledby="updateProfileModalLabel" aria-hidden="true">  
+        <div class="modal-dialog" role="document">  
+            <div class="modal-content">  
+                <div class="modal-header">  
+                    <h5 class="modal-title" id="updateProfileModalLabel">Update Profile</h5>  
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">  
+                        <span aria-hidden="true">&times;</span>  
+                    </button>  
+                </div>  
+                <form action="{{ url_for('update_profile_picture') }}" method="POST" enctype="multipart/form-data"> 
+                    <div class="modal-body">  
+                        <input type="text" name="username" placeholder="username" required>  
+                    </div>
+                    <div class="modal-body">  
+                        <input type="email" name="email" placeholder="email" required>  
+                    </div>
+                    <div class="modal-body">  
+                        <input type="phone" name="phone" placeholder="phone" required>  
+                    </div>
+                    <div class="modal-body">  
+                        <input type="text" name="location" placeholder="location" required>  
+                    </div>
+                    <div class="modal-body">  
+                        <input type="file" name="profile_picture" accept="image/*" required>  
+                    </div>  
+                    <div class="modal-footer">  
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>  
+                        <button type="submit" class="btn btn-primary">Update</button>  
+                    </div>  
+                </form>  
+            </div>  
+        </div>  
+    </div>  
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+</body>  
+</html>
